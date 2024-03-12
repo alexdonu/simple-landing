@@ -1,0 +1,25 @@
+@font-face {
+  font-family: "Kelson";
+  src: url("./src/assets/fonts/KelsonSans-Normal.ttf") format("truetype");
+}
+:root {
+  --gray-color: #afafb6;
+  --midnight-navy-color: #0f172a;
+  --deep-ocean-blue-color: #1e293b;
+  --midnight-indigo-color: #182138;
+  --dark-yellow-color: #f5cc3b;
+  --white-color: #ffffff;
+  --black-color: #000000;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+body {
+  font-family: "Kelson", sans-serif;
+}
