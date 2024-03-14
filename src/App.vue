@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Menu from "./components/Menu.vue";
 import DreamQuote from "./components/DreamQuote.vue";
 import OurOffers from "./components/OurOffers.vue";
 import WhyUs from "./components/WhyUs.vue";
@@ -11,13 +10,7 @@ import Header from "./components/Header.vue";
 </script>
 
 <template>
-  <!-- <div class="app-container"> -->
-  <!-- <Menu /> -->
-  <!-- </div> -->
-
-  <!-- <div class="app-container"> -->
   <Header />
-  <!-- </div> -->
   <DreamQuote />
   <OurOffers />
   <WhyUs />
