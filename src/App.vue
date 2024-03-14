@@ -11,11 +11,13 @@ import Header from "./components/Header.vue";
 </script>
 
 <template>
-  <Menu />
+  <!-- <div class="app-container"> -->
+  <!-- <Menu /> -->
+  <!-- </div> -->
 
-  <div class="app-container">
-    <Header />
-  </div>
+  <!-- <div class="app-container"> -->
+  <Header />
+  <!-- </div> -->
   <DreamQuote />
   <OurOffers />
   <WhyUs />

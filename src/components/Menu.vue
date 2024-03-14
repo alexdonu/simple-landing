@@ -29,8 +29,8 @@ import LrssLogo from "../assets/LrssLogo.vue";
   background-color: var(--gray-color);
   color: var(--deep-ocean-blue-color);
   font-size: 14px;
-  width: 1264px;
   border-radius: 24px;
+  width: 100%;
 }
 
 .left-side-container {
@@ -50,6 +50,7 @@ import LrssLogo from "../assets/LrssLogo.vue";
 @media (min-width: 675px) {
   .menu-container {
     border-radius: 64px;
+    padding: 0px 8px 0px;
   }
 }
 </style>
