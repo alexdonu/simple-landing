@@ -2,7 +2,7 @@
 
 <template>
   <div class="container">
-    <h1 class="main-header">Istoria noastră</h1>
+    <h1 class="main-header" id="our-history">Istoria noastră</h1>
 
     <div class="store-video">
       <video controls>
@@ -20,12 +20,12 @@
   align-items: center;
   justify-content: center;
   background-color: var(--midnight-indigo-color);
-  padding: 16px;
+  padding: 100px 16px 16px 16px;
 }
 
 .main-header {
   color: var(--white-color);
-  font-size: 24px;
+  font-size: 50px;
   text-align: center;
 }
 

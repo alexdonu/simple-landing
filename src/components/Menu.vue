@@ -5,9 +5,9 @@ import LrssLogo from "../assets/LrssLogo.vue";
 <template>
   <div class="menu-container">
     <div class="left-side-container">
-      <div>Despre noi</div>
-      <div>Oferte</div>
-      <div>Intrebari frecvente</div>
+      <a href="#about-us">Despre noi</a>
+      <a href="#offer">Oferte</a>
+      <a href="#faq">Întrebari</a>
     </div>
 
     <div>
@@ -15,8 +15,8 @@ import LrssLogo from "../assets/LrssLogo.vue";
     </div>
 
     <div class="right-side-container">
-      <div>Istoria noastra</div>
-      <div>Contacteaza-ne</div>
+      <a href="#our-history">Istoria noastră</a>
+      <a href="#phone-number">Contactează-ne</a>
     </div>
   </div>
 </template>
@@ -36,14 +36,14 @@ import LrssLogo from "../assets/LrssLogo.vue";
 .left-side-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 26px;
   padding: 0px 16px 0px;
 }
 
 .right-side-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 26px;
   padding: 0px 16px 0px;
 }
 
@@ -52,5 +52,23 @@ import LrssLogo from "../assets/LrssLogo.vue";
     border-radius: 64px;
     padding: 0px 8px 0px;
   }
+}
+
+@media (max-width: 500px) {
+  .menu-container {
+    flex-direction: column;
+  }
+}
+
+a {
+  color: #333;
+  font-size: medium;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #555;
+  cursor: pointer;
 }
 </style>

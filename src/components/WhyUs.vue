@@ -61,13 +61,13 @@
   flex-direction: column;
   background-color: var(--midnight-indigo-color);
   width: 100%;
-  padding: 16px 16px;
+  padding: 100px 16px;
   gap: 40px;
 }
 
 .main-header {
   color: var(--white-color);
-  font-size: 24px;
+  font-size: 50px;
   text-align: center;
 }
 
@@ -82,12 +82,12 @@
 
 .subheader {
   color: var(--gray-color);
-  font-size: 16px;
+  font-size: 24px;
 }
 
 .text {
   color: var(--white-color);
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .materials-image img {

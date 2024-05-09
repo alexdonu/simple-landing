@@ -17,6 +17,6 @@ const props = defineProps<{
   width: 360px;
   padding: 16px 48px;
   border-radius: 4px;
-  font-size: 18px;
+  font-size: 24px;
 }
 </style>

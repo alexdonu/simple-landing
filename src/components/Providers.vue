@@ -1,8 +1,9 @@
 <script lang="ts" setup></script>
 
 <template>
-  <div class="main-header">
-    <h1>Furnizori</h1>
+  <hr />
+  <div class="main-header-container">
+    <h1 class="main-header">Furnizori</h1>
   </div>
 
   <div class="container">
@@ -12,7 +13,7 @@
 
     <img src="../assets/images/liniah2o.jpeg" alt="" />
 
-    <img src="../assets/images/crisor.png" alt="" />
+    <img src="../assets/images/crisor_rect.png" alt="" />
 
     <img src="../assets/images/nanu.jpeg" alt="" />
 
@@ -34,13 +35,17 @@
   gap: 16px;
 }
 
-.main-header {
+.main-header-container {
   display: flex;
   color: var(--white-color);
-  font-size: 24px;
   background-color: var(--deep-ocean-blue-color);
   width: 100%;
   justify-content: center;
+  padding-top: 100px;
+}
+
+.main-header {
+  font-size: 50px;
 }
 
 img {

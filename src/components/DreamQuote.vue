@@ -2,7 +2,9 @@
 
 <template>
   <div class="container">
-    <h1 class="main-header">Construiește-ți visul, simplu și eficient!</h1>
+    <h1 class="main-header" id="about-us">
+      Construiește-ți visul, simplu și eficient!
+    </h1>
 
     <h3 class="subheader">
       La “Roman&Svetlana” înțelegem că fiecare proiect de construcție este unic
@@ -21,18 +23,18 @@
   text-align: center;
   text-overflow: ellipsis;
   background-color: var(--deep-ocean-blue-color);
-  padding: 245px 24px;
+  padding: 100px 24px;
   gap: 40px;
   align-items: center;
 }
 
 .main-header {
   color: var(--gray-color);
-  font-size: 24px;
+  font-size: 50px;
 }
 
 .subheader {
   color: var(--white-color);
-  font-size: 16px;
+  font-size: 24px;
 }
 </style>

@@ -3,7 +3,7 @@
 <template>
   <div class="container">
     <img
-      src="../assets/images/coffee.png"
+      src="../assets/images/coffee_rect.png"
       alt="a picture focused on cup of coffee and some deposit on background"
       class="rounded-image"
     />
@@ -14,7 +14,7 @@
 .container {
   display: flex;
   background-color: var(--midnight-navy-color);
-  padding: 245px 48px;
+  padding: 100px 48px;
   justify-content: center;
   width: 100%;
 }

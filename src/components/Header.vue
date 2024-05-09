@@ -17,12 +17,14 @@ import Menu from "./Menu.vue";
 <style scoped>
 .header-container {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
 .menu {
   position: absolute;
   width: 100%;
-  top: 0;
+  top: 10px;
+  padding: 0px 10px;
 }
 </style>

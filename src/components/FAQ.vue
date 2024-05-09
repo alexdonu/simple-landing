@@ -2,7 +2,7 @@
 
 <template>
   <div class="container">
-    <h1 class="main-header">Întrebări frecvente</h1>
+    <h1 class="main-header" id="faq">Întrebări frecvente</h1>
 
     <div class="question-and-answer">
       <h2>Cum pot comanda materiale de construcție?</h2>
@@ -75,25 +75,25 @@
   flex-direction: column;
   background-color: var(--deep-ocean-blue-color);
   width: 100%;
-  padding: 120px 16px 16px 16px;
+  padding: 16px;
   gap: 40px;
 }
 
 .main-header {
   color: var(--white-color);
-  font-size: 24px;
+  font-size: 50px;
   text-align: center;
 }
 
 .question-and-answer h2 {
   color: var(--white-color);
-  font-size: 16px;
+  font-size: 24px;
   text-align: center;
 }
 
 .question-and-answer h3 {
   color: var(--gray-color);
-  font-size: 14px;
+  font-size: 16px;
   text-align: center;
 }
 </style>
