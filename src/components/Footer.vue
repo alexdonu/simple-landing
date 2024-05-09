@@ -68,6 +68,6 @@
 
 .all-rights-reserved {
   margin-top: 16px;
-  font-size: 14px;
+  font-size: 16px;
 }
 </style>
