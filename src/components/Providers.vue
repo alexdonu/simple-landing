@@ -49,8 +49,15 @@
 }
 
 img {
-  width: 321px;
-  height: 321px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
+}
+
+@media (max-width: 500px) {
+  img {
+    width: 70px;
+    height: 70px;
+  }
 }
 </style>
