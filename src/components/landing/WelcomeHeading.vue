@@ -21,7 +21,7 @@ import BigYellowButton from "./BigYellowButton.vue";
     <div class="messengers">
       <div class="messenger">
         <img
-          src="../assets/icons/phone-icon.svg"
+          src="../../assets/icons/phone-icon.svg"
           class="phone-icon"
           alt="Phone"
         />
@@ -29,17 +29,17 @@ import BigYellowButton from "./BigYellowButton.vue";
       </div>
 
       <div class="messenger">
-        <img src="../assets/icons/whatsapp-icon.svg" alt="WhatsApp" />
+        <img src="../../assets/icons/whatsapp-icon.svg" alt="WhatsApp" />
         <p>WhatsApp</p>
       </div>
 
       <div class="messenger">
-        <img src="../assets/icons/telegram-icon.svg" alt="Telegram" />
+        <img src="../../assets/icons/telegram-icon.svg" alt="Telegram" />
         <p>Telegram</p>
       </div>
 
       <div class="messenger">
-        <img src="../assets/icons/viber-icon.svg" alt="Viber" />
+        <img src="../../assets/icons/viber-icon.svg" alt="Viber" />
         <p>Viber</p>
       </div>
     </div>

@@ -3,28 +3,28 @@
 <template>
   <div class="container">
     <div class="logo">
-      <img src="../assets/images/lrss_log.png" alt="shop logo" />
+      <img src="../../assets/images/lrss_log.png" alt="shop logo" />
     </div>
 
     <div class="social-medias">
       <a href="https://www.facebook.com/LaRomanSvetlanaSrl" target="_blank">
         <img
           class="social-logo"
-          src="../assets/images/facebook.svg"
+          src="../../assets/images/facebook.svg"
           alt="Facebook"
         />
       </a>
       <a href="https://www.instagram.com/laroman.svetlana/" target="_blank">
         <img
           class="social-logo"
-          src="../assets/images/instagram.svg"
+          src="../../assets/images/instagram.svg"
           alt="Instagram"
         />
       </a>
       <a href="https://www.tiktok.com/@laroman.svetlana" target="_blank">
         <img
           class="social-logo"
-          src="../assets/images/tiktok.svg"
+          src="../../assets/images/tiktok.svg"
           alt="TikTok"
         />
       </a>
