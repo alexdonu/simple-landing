@@ -3,7 +3,7 @@
 <template>
   <div class="container">
     <img
-      src="../assets/images/coffee_rect.png"
+      src="../../assets/images/coffee_rect.png"
       alt="a picture focused on cup of coffee and some deposit on background"
       class="rounded-image"
     />

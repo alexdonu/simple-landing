@@ -48,7 +48,7 @@
 
     <div class="materials-image">
       <img
-        src="../assets/images/materials.png"
+        src="../../assets/images/materials.png"
         alt="image with different material used in construction"
       />
     </div>

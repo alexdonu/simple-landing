@@ -7,21 +7,21 @@
   </div>
 
   <div class="container">
-    <img src="../assets/images/modem.jpeg" alt="" />
+    <img src="../../assets/images/modem.jpeg" alt="" />
 
-    <img src="../assets/images/luminaled.jpeg" alt="" />
+    <img src="../../assets/images/luminaled.jpeg" alt="" />
 
-    <img src="../assets/images/liniah2o.jpeg" alt="" />
+    <img src="../../assets/images/liniah2o.jpeg" alt="" />
 
-    <img src="../assets/images/crisor_rect.png" alt="" />
+    <img src="../../assets/images/crisor_rect.png" alt="" />
 
-    <img src="../assets/images/nanu.jpeg" alt="" />
+    <img src="../../assets/images/nanu.jpeg" alt="" />
 
-    <img src="../assets/images/lider.jpeg" alt="" />
+    <img src="../../assets/images/lider.jpeg" alt="" />
 
-    <img src="../assets/images/supraten.jpeg" alt="" />
+    <img src="../../assets/images/supraten.jpeg" alt="" />
 
-    <img src="../assets/images/profmet.jpeg" alt="" />
+    <img src="../../assets/images/profmet.jpeg" alt="" />
   </div>
 </template>
 

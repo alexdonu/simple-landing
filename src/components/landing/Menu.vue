@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import LrssLogo from "../assets/LrssLogo.vue";
+import LrssLogo from "../../assets/LrssLogo.vue";
 </script>
 
 <template>
