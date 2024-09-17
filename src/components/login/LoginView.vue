@@ -13,7 +13,7 @@ async function login() {
     .then((userCredential) => {
       const user = userCredential.user;
       console.log("User authenticated:", user);
-      router.push({ path: "/secret" });
+      router.push({ path: "/x" });
     })
     .catch((error) => {
       const errorCode = error.code;
