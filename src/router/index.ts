@@ -16,9 +16,9 @@ const router = createRouter({
       component: () => import("../components/login/LoginView.vue"),
     },
     {
-      path: "/secret",
-      name: "secret",
-      component: () => import("../components/login/SecretView.vue"),
+      path: "/x",
+      name: "admin-panel",
+      component: () => import("../components/login/AdminPanel.vue"),
       meta: {
         requiresAuth: true,
       },

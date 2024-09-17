@@ -8,12 +8,14 @@ import HistoryVideo from "../landing/HistoryVideo.vue";
 import Providers from "../landing/Providers.vue";
 import Footer from "../landing/Footer.vue";
 import Header from "../landing/Header.vue";
+import Blog from "../landing/Blog.vue";
 </script>
 
 <template>
   <div class="app-container">
     <div class="components-container">
       <Header />
+      <Blog />
       <DreamQuote />
       <OurOffers />
       <WhyUs />
