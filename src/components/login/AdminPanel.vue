@@ -3,6 +3,7 @@ import { getAuth, signOut } from "firebase/auth";
 import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
 import PostsList from "../crud/PostsList.vue";
+import UpsertPost from "../crud/UpsertPost.vue";
 
 const router = useRouter();
 const actionToPerform = ref<string>("");
@@ -92,6 +93,10 @@ const getActionToPerformMessage = computed(() => {
 
   <h1>
     {{ getActionToPerformMessage }}
+
+    <div v-if="getActionToPerformMessage === 'You want to create a new post'">
+      <UpsertPost mode="create" />
+    </div>
   </h1>
 </template>
 
