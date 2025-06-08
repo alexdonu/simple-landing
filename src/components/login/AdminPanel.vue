@@ -4,6 +4,7 @@ import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
 import PostsList from "../crud/PostsList.vue";
 import UpsertPost from "../crud/UpsertPost.vue";
+import DeletePost from "../crud/DeletePost.vue";
 
 const router = useRouter();
 const actionToPerform = ref<string>("");
@@ -93,11 +94,14 @@ const getActionToPerformMessage = computed(() => {
 
   <h1>
     {{ getActionToPerformMessage }}
-
-    <div v-if="getActionToPerformMessage === 'You want to create a new post'">
-      <UpsertPost mode="create" />
-    </div>
   </h1>
+
+  <div v-if="actionToPerform === 'create'">
+    <UpsertPost mode="create" />
+  </div>
+  <div v-else-if="actionToPerform === 'delete'">
+    <DeletePost :postId="selectedPost" />
+  </div>
 </template>
 
 <style lang="css" scoped>

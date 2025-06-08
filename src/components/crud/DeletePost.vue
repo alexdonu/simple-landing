@@ -1,8 +1,13 @@
 <script lang="ts" setup>
+import { useFirestore } from "../../composables/useFirestore";
+
+const { deletePost } = useFirestore();
+
 const props = defineProps<{
-  postId: String;
+  postId: string;
 }>();
 </script>
+
 <template>
-  <h1>You are going to delete {{ props.postId }}</h1>
+  <button @click="deletePost(props.postId)">Delete post</button>
 </template>

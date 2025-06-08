@@ -5,15 +5,14 @@ import {
   getFirestore,
   doc,
   getDoc,
+  orderBy,
+  query,
+  deleteDoc,
 } from "firebase/firestore";
-
-type PostData = {
-  title: string;
-  content: string;
-  imagesUrls: string[];
-};
-
-type PostDataWithId = PostData & { id: string };
+import type {
+  PostData,
+  PostDataWithId,
+} from "../components/landing/types/types";
 
 export function useFirestore() {
   const db = getFirestore();
@@ -31,7 +30,9 @@ export function useFirestore() {
   const getCollectionDocs = async () => {
     console.log("Fetching documents...");
     try {
-      const querySnapshot = await getDocs(collection(db, "posts"));
+      const querySnapshot = await getDocs(
+        query(collection(db, "posts"), orderBy("createdAt", "desc"))
+      );
 
       const docs: PostDataWithId[] = [];
       querySnapshot.forEach((doc) => {
@@ -64,5 +65,14 @@ export function useFirestore() {
     }
   };
 
-  return { writeToDb, getCollectionDocs, getPostById };
+  const deletePost = async (docId: string) => {
+    try {
+      await deleteDoc(doc(db, "posts", docId));
+      console.log("Document successfully deleted!");
+    } catch (error) {
+      console.error("Error removing document: ", error);
+    }
+  };
+
+  return { writeToDb, getCollectionDocs, getPostById, deletePost };
 }
