@@ -2,6 +2,7 @@
 import { ref, defineProps } from "vue";
 import { useStorage } from "../../composables/useStorage";
 import { useFirestore } from "../../composables/useFirestore";
+import { PostData } from "../landing/types/types";
 
 const { uploadImages, imageUrls, handleFileChange } = useStorage();
 const { writeToDb } = useFirestore();
@@ -10,20 +11,18 @@ const props = defineProps<{
   mode: string;
 }>();
 
-const postToAdd = ref<{
-  title: string;
-  content: string;
-  imagesUrls: string[];
-}>({
+const postToAdd = ref<PostData>({
   title: "",
   content: "",
   imagesUrls: [],
+  createdAt: new Date().toISOString(),
 });
 
 async function createPost() {
   try {
     await uploadImages();
     postToAdd.value.imagesUrls = imageUrls.value;
+    postToAdd.value.createdAt = new Date().toISOString();
 
     console.log("post to add", postToAdd.value);
     await writeToDb(postToAdd.value);

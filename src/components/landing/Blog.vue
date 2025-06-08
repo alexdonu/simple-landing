@@ -1,8 +1,26 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { onMounted, ref } from "vue";
+import PostView from "./PostView.vue";
+import type { PostDataWithId } from "./types/types";
+import { useFirestore } from "../../composables/useFirestore";
+
+const { getCollectionDocs } = useFirestore();
+const posts = ref<PostDataWithId[]>([]);
+
+onMounted(async () => {
+  try {
+    posts.value = (await getCollectionDocs()) ?? [];
+  } catch (error) {
+    console.log(error);
+  }
+});
+</script>
 
 <template>
   <div class="container">
-    <h1>Blog</h1>
+    <h1>Blogg</h1>
+
+    <PostView v-for="post in posts" :post="post" :key="post.id" />
   </div>
 </template>
 
