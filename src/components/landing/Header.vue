@@ -22,9 +22,7 @@ import Menu from "./Menu.vue";
 }
 
 .menu {
-  position: absolute;
   width: 100%;
-  top: 10px;
-  padding: 0px 10px;
+  padding: 10px;
 }
 </style>

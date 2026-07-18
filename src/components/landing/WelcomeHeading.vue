@@ -44,7 +44,7 @@ import BigYellowButton from "./BigYellowButton.vue";
       </div>
     </div>
 
-    <h2><a href="tel:+37368695002">+37368695002</a></h2>
+    <h2 class="phone-number"><a href="tel:+37368695002">+37368695002</a></h2>
   </div>
 </template>
 
@@ -52,6 +52,17 @@ import BigYellowButton from "./BigYellowButton.vue";
 a {
   text-decoration: none;
   color: var(--white-color);
+}
+
+.phone-number {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: clamp(1.2rem, 4vw, 1.75rem);
+  letter-spacing: 0.02em;
+}
+
+.phone-number a:hover {
+  color: var(--dark-yellow-color);
 }
 
 .headers {
@@ -63,38 +74,55 @@ a {
   text-align: center;
   text-overflow: ellipsis;
   background-color: var(--midnight-indigo-color);
-  padding: 100px 24px;
+  padding: var(--section-padding) var(--section-padding-x);
   gap: 40px;
   align-items: center;
   width: 100%;
 }
 
 .main-header {
-  font-size: 50px;
+  font-size: var(--heading-size);
   color: var(--gray-color);
   margin-bottom: 16px;
 }
 
 .subheader {
-  font-size: 24px;
+  font-size: var(--subheading-size);
   color: var(--white-color);
+  max-width: 560px;
 }
 
 .messengers {
   display: flex;
-  gap: 48px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(16px, 5vw, 48px);
 }
 
 .messenger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 76px;
+  color: var(--white-color);
+}
+
+.messenger p {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.messenger img {
   width: 48px;
   height: 48px;
-  color: var(--white-color);
+  object-fit: contain;
 }
 
 .phone-icon {
   background-color: var(--white-color);
   border-radius: 50%;
-  height: 90%;
 }
 
 @media (min-width: 1280px) {

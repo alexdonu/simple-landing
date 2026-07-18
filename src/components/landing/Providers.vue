@@ -26,12 +26,20 @@
 </template>
 
 <style scoped>
+hr {
+  border: none;
+  height: 2px;
+  width: 100%;
+  background: var(--gold-gradient);
+  opacity: 0.35;
+}
+
 .container {
   display: flex;
   flex-wrap: wrap;
   background-color: var(--deep-ocean-blue-color);
   justify-content: center;
-  padding: 16px;
+  padding: 16px 16px var(--section-padding);
   gap: 16px;
 }
 
@@ -41,23 +49,25 @@
   background-color: var(--deep-ocean-blue-color);
   width: 100%;
   justify-content: center;
-  padding-top: 100px;
+  padding-top: var(--section-padding);
+  padding-bottom: 8px;
 }
 
 .main-header {
-  font-size: 50px;
+  font-size: var(--heading-size);
 }
 
 img {
-  width: 250px;
-  height: 250px;
+  width: clamp(90px, 20vw, 250px);
+  height: clamp(90px, 20vw, 250px);
   border-radius: 50%;
+  object-fit: cover;
+  filter: grayscale(1) opacity(0.65);
+  transition: filter 0.3s ease, transform 0.3s ease;
 }
 
-@media (max-width: 500px) {
-  img {
-    width: 70px;
-    height: 70px;
-  }
+img:hover {
+  filter: grayscale(0) opacity(1);
+  transform: scale(1.06);
 }
 </style>

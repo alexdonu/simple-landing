@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Inter:wght@400;500;600;700&display=swap");
 /* @font-face {
   font-family: "Kelson";
   src: url("./src/assets/fonts/KelsonSans-Normal.ttf") format("truetype");
@@ -12,6 +12,21 @@
   --dark-yellow-color: #f5cc3b;
   --white-color: #ffffff;
   --black-color: #000000;
+
+  /* fluid spacing/typography so sections scale with the viewport
+     instead of using the same fixed px values on phones and desktops */
+  --section-padding: clamp(2.5rem, 8vw, 6.25rem);
+  --section-padding-x: clamp(1rem, 4vw, 3rem);
+  --heading-size: clamp(1.75rem, 5vw, 3.125rem);
+  --subheading-size: clamp(1.1rem, 3vw, 1.5rem);
+
+  /* visual tokens: gold gradient + depth, reused across cards/buttons/dividers */
+  --gold-gradient: linear-gradient(135deg, #f7d768, #e0a92a);
+  --gold-glow: rgba(245, 204, 59, 0.35);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.2);
+  --shadow-lg: 0 20px 45px rgba(0, 0, 0, 0.35);
+  --radius: 16px;
+  --font-ui: "Inter", sans-serif;
 }
 
 *,
@@ -22,6 +37,18 @@
   font-weight: normal;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   font-family: "Merriweather", sans-serif;
+  overflow-x: hidden;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-ui);
 }

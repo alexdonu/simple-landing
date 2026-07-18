@@ -41,12 +41,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-top: 3px solid transparent;
+  border-image: var(--gold-gradient) 1;
+}
+
+.logo {
+  width: 100%;
+  max-width: 220px;
 }
 
 .logo img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
 }
 
 .social-medias {
@@ -60,14 +67,19 @@
   width: 64px;
   height: 64px;
   object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .social-logo:hover {
-  transform: scale(1.1);
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 8px 20px var(--gold-glow);
 }
 
 .all-rights-reserved {
+  font-family: var(--font-ui);
   margin-top: 16px;
-  font-size: 16px;
+  font-size: 14px;
+  color: var(--midnight-navy-color);
 }
 </style>

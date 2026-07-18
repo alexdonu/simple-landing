@@ -11,23 +11,11 @@
   display: flex;
   flex-direction: column;
   background-color: var(--light-midnight-navy-color);
-  padding: 100px 48px;
+  padding: var(--section-padding) var(--section-padding-x);
   justify-content: center;
   width: 100%;
   color: white;
   text-align: center;
-}
-
-.rounded-image {
-  border-radius: 50%;
-  width: 300px;
-  height: 300px;
-}
-
-@media (min-width: 1280px) {
-  .rounded-image {
-    width: 545px;
-    height: 545px;
-  }
+  font-size: var(--heading-size);
 }
 </style>

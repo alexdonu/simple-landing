@@ -23,18 +23,19 @@
   text-align: center;
   text-overflow: ellipsis;
   background-color: var(--deep-ocean-blue-color);
-  padding: 100px 24px;
+  padding: var(--section-padding) var(--section-padding-x);
   gap: 40px;
   align-items: center;
 }
 
 .main-header {
   color: var(--gray-color);
-  font-size: 50px;
+  font-size: var(--heading-size);
 }
 
 .subheader {
   color: var(--white-color);
-  font-size: 24px;
+  font-size: var(--subheading-size);
+  max-width: 720px;
 }
 </style>

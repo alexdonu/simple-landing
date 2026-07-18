@@ -33,7 +33,7 @@ function redirectToOfferForm() {
   flex-direction: column;
   background-color: var(--midnight-indigo-color);
   width: 100%;
-  padding: 0px 16px;
+  padding: 0px var(--section-padding-x) var(--section-padding-x);
   gap: 40px;
 }
 
@@ -42,17 +42,18 @@ function redirectToOfferForm() {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 48px 16px;
+  padding: var(--section-padding) 16px;
   gap: 16px;
 }
 
 .main-header {
   color: var(--white-color);
-  font-size: 50px;
+  font-size: var(--heading-size);
+  text-align: center;
 }
 
 .subheader {
   color: var(--gray-color);
-  font-size: 24px;
+  font-size: var(--subheading-size);
 }
 </style>
