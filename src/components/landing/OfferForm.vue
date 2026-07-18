@@ -54,7 +54,7 @@ async function sendOffer(event: Event) {
 </script>
 
 <template>
-  <div class="container is-flex-center">
+  <div class="container">
     <h1 id="offer-form">Primește oferta</h1>
 
     <form class="is-flex-center" @submit="sendOffer">
@@ -108,6 +108,10 @@ async function sendOffer(event: Event) {
 
 <style scoped>
 .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   background-color: var(--deep-ocean-blue-color);
   padding: 0 var(--section-padding-x);
 }
@@ -117,6 +121,7 @@ async function sendOffer(event: Event) {
   align-items: center;
   width: 100%;
   max-width: 420px;
+  margin: 0 auto;
   padding-bottom: 50px;
 }
 
