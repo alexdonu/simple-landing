@@ -5,6 +5,8 @@ import {
   getFirestore,
   doc,
   getDoc,
+  updateDoc,
+  deleteDoc,
 } from "firebase/firestore";
 
 type PostData = {
@@ -64,5 +66,31 @@ export function useFirestore() {
     }
   };
 
-  return { writeToDb, getCollectionDocs, getPostById };
+  const updatePost = async (docId: string, data: PostData) => {
+    try {
+      await updateDoc(doc(db, "posts", docId), data);
+      console.log("Document updated: ", docId);
+    } catch (e) {
+      console.error("Error updating document: ", e);
+      throw e;
+    }
+  };
+
+  const deletePost = async (docId: string) => {
+    try {
+      await deleteDoc(doc(db, "posts", docId));
+      console.log("Document deleted: ", docId);
+    } catch (e) {
+      console.error("Error deleting document: ", e);
+      throw e;
+    }
+  };
+
+  return {
+    writeToDb,
+    getCollectionDocs,
+    getPostById,
+    updatePost,
+    deletePost,
+  };
 }
