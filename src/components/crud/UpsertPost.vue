@@ -5,7 +5,8 @@ import { useFirestore } from "../../composables/useFirestore";
 
 const { uploadImages, imageUrls, imageFiles, handleFileChange } =
   useStorage();
-const { writeToDb, updatePost, getPostById } = useFirestore();
+const { writeToDb, updatePost, getPostById, setPostPublished } =
+  useFirestore();
 
 const props = defineProps<{
   mode: string;
@@ -18,20 +19,28 @@ const emit = defineEmits<{
 }>();
 
 const isSaving = ref(false);
+const isPublishing = ref(false);
 const errorMessage = ref("");
 
 const postToAdd = ref<{
   title: string;
   content: string;
   imagesUrls: string[];
+  published: boolean;
 }>({
   title: "",
   content: "",
   imagesUrls: [],
+  published: false,
 });
 
 async function loadPost() {
-  postToAdd.value = { title: "", content: "", imagesUrls: [] };
+  postToAdd.value = {
+    title: "",
+    content: "",
+    imagesUrls: [],
+    published: false,
+  };
   imageFiles.value = [];
   imageUrls.value = [];
 
@@ -41,6 +50,7 @@ async function loadPost() {
       postToAdd.value.title = (existingPost as any).title ?? "";
       postToAdd.value.content = (existingPost as any).content ?? "";
       postToAdd.value.imagesUrls = (existingPost as any).imagesUrls ?? [];
+      postToAdd.value.published = (existingPost as any).published ?? false;
     }
   }
 }
@@ -50,6 +60,25 @@ watch(() => [props.mode, props.postId], loadPost);
 
 function removeImage(index: number) {
   postToAdd.value.imagesUrls.splice(index, 1);
+}
+
+async function togglePublish() {
+  if (!props.postId) return;
+
+  isPublishing.value = true;
+  errorMessage.value = "";
+  const next = !postToAdd.value.published;
+
+  try {
+    await setPostPublished(props.postId, next);
+    postToAdd.value.published = next;
+    emit("saved", props.postId);
+  } catch (error) {
+    console.error("Error updating publish status", error);
+    errorMessage.value = "Nu am putut actualiza starea de publicare.";
+  } finally {
+    isPublishing.value = false;
+  }
 }
 
 async function savePost() {
@@ -95,6 +124,34 @@ async function savePost() {
       class="title-input"
       placeholder="Titlul postării"
     />
+
+    <div v-if="props.postId" class="status-row">
+      <span
+        class="status-badge"
+        :class="{ published: postToAdd.published }"
+      >
+        {{ postToAdd.published ? "Publicat" : "Ciornă" }}
+      </span>
+
+      <button
+        type="button"
+        class="publish-button"
+        :class="{ unpublish: postToAdd.published }"
+        :disabled="isPublishing"
+        @click="togglePublish"
+      >
+        {{
+          isPublishing
+            ? "Se actualizează..."
+            : postToAdd.published
+            ? "Retrage din Blog"
+            : "Publică"
+        }}
+      </button>
+    </div>
+    <p v-else class="draft-hint">
+      Salvează postarea pentru a o putea publica în Blog.
+    </p>
 
     <textarea
       v-model="postToAdd.content"
@@ -173,6 +230,69 @@ async function savePost() {
 .title-input:focus {
   outline: none;
   border-bottom-color: var(--dark-yellow-color);
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.status-badge {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: var(--gray-color);
+  background-color: rgba(175, 175, 182, 0.15);
+}
+
+.status-badge.published {
+  color: #7fd88f;
+  background-color: rgba(127, 216, 143, 0.15);
+}
+
+.publish-button {
+  background: var(--gold-gradient);
+  color: var(--midnight-navy-color);
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.publish-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.publish-button.unpublish {
+  background: none;
+  color: var(--gray-color);
+  border: 1px solid rgba(175, 175, 182, 0.4);
+}
+
+.publish-button.unpublish:hover:not(:disabled) {
+  color: var(--white-color);
+  border-color: var(--gray-color);
+}
+
+.publish-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.draft-hint {
+  font-family: var(--font-ui);
+  color: var(--gray-color);
+  font-size: 13px;
 }
 
 .content-input {

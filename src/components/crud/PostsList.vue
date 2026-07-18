@@ -9,6 +9,7 @@ interface PostDataWithId {
   title: string;
   content: string;
   imagesUrls: string[];
+  published?: boolean;
 }
 
 const props = defineProps<{
@@ -55,7 +56,15 @@ function requestDelete(event: Event, id: string) {
         :class="{ active: post.id === props.selectedId }"
         @click="emit('select', post.id)"
       >
-        <span class="post-title">{{ post.title || "Fără titlu" }}</span>
+        <span class="post-label">
+          <span
+            class="status-dot"
+            :class="{ published: post.published }"
+            :title="post.published ? 'Publicat' : 'Ciornă'"
+          ></span>
+
+          <span class="post-title">{{ post.title || "Fără titlu" }}</span>
+        </span>
 
         <span
           class="delete-icon"
@@ -155,6 +164,25 @@ function requestDelete(event: Event, id: string) {
 .post-row.active {
   background-color: rgba(245, 204, 59, 0.12);
   border-color: rgba(245, 204, 59, 0.35);
+}
+
+.post-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.status-dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--gray-color);
+}
+
+.status-dot.published {
+  background-color: #7fd88f;
 }
 
 .post-title {

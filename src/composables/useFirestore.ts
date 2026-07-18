@@ -7,12 +7,15 @@ import {
   getDoc,
   updateDoc,
   deleteDoc,
+  query,
+  where,
 } from "firebase/firestore";
 
 type PostData = {
   title: string;
   content: string;
   imagesUrls: string[];
+  published?: boolean;
 };
 
 type PostDataWithId = PostData & { id: string };
@@ -66,6 +69,35 @@ export function useFirestore() {
     }
   };
 
+  const getPublishedPosts = async () => {
+    try {
+      const publishedQuery = query(
+        collection(db, "posts"),
+        where("published", "==", true)
+      );
+      const querySnapshot = await getDocs(publishedQuery);
+
+      const docs: PostDataWithId[] = [];
+      querySnapshot.forEach((doc) => {
+        docs.push({ id: doc.id, ...(doc.data() as PostData) });
+      });
+
+      return docs;
+    } catch (e) {
+      console.error("Error fetching published documents: ", e);
+      return [];
+    }
+  };
+
+  const setPostPublished = async (docId: string, published: boolean) => {
+    try {
+      await updateDoc(doc(db, "posts", docId), { published });
+    } catch (e) {
+      console.error("Error updating publish status: ", e);
+      throw e;
+    }
+  };
+
   const updatePost = async (docId: string, data: PostData) => {
     try {
       await updateDoc(doc(db, "posts", docId), data);
@@ -90,6 +122,8 @@ export function useFirestore() {
     writeToDb,
     getCollectionDocs,
     getPostById,
+    getPublishedPosts,
+    setPostPublished,
     updatePost,
     deletePost,
   };
