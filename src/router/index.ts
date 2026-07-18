@@ -11,12 +11,12 @@ const router = createRouter({
       component: AggregatedLanding,
     },
     {
-      path: "/login",
+      path: "/xlogin",
       name: "login",
       component: () => import("../components/login/LoginView.vue"),
     },
     {
-      path: "/x",
+      path: "/xadmin",
       name: "admin-panel",
       component: () => import("../components/login/AdminPanel.vue"),
       meta: {
@@ -45,7 +45,7 @@ router.beforeEach(async (to, _from, next) => {
       next();
     } else {
       alert("You must be logged in to see this page");
-      next("/login");
+      next("/xlogin");
     }
   } else {
     next();

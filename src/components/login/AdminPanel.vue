@@ -1,17 +1,16 @@
 <script lang="ts" setup>
 import { getAuth, signOut } from "firebase/auth";
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import PostsList from "../crud/PostsList.vue";
 import UpsertPost from "../crud/UpsertPost.vue";
+import DeletePost from "../crud/DeletePost.vue";
 
 const router = useRouter();
-const actionToPerform = ref<string>("");
 
 async function closeSession() {
   signOut(getAuth())
     .then(() => {
-      console.log("User signed out");
       router.push({ path: "/" });
     })
     .catch((error) => {
@@ -19,122 +18,159 @@ async function closeSession() {
     });
 }
 
-const selectedPost = ref("");
+const selectedPostId = ref<string | null>(null);
+const mode = ref<"create" | "update" | null>(null);
+const pendingDeleteId = ref<string | null>(null);
+const postsListKey = ref(0);
 
-function getSelectedPost(id: string) {
-  selectedPost.value = id;
+function startCreate() {
+  mode.value = "create";
+  selectedPostId.value = null;
 }
 
-const getActionToPerformMessage = computed(() => {
-  if (selectedPost.value === "default" && actionToPerform.value === "create") {
-    return "You want to create a new post";
-  }
+function selectPost(id: string) {
+  mode.value = "update";
+  selectedPostId.value = id;
+}
 
-  if (
-    selectedPost.value !== "default" &&
-    (actionToPerform.value === "update" || actionToPerform.value === "delete")
-  ) {
-    return `You want to ${actionToPerform.value} the post ${selectedPost.value}`;
-  }
+function onSaved(id: string) {
+  mode.value = "update";
+  selectedPostId.value = id;
+  postsListKey.value += 1;
+}
 
-  return "I can't determine the action you want to perform. Please select something from the list and touch one of radio buttons";
-});
+function cancelEdit() {
+  mode.value = null;
+  selectedPostId.value = null;
+}
+
+function onDeleted() {
+  if (pendingDeleteId.value === selectedPostId.value) {
+    cancelEdit();
+  }
+  pendingDeleteId.value = null;
+  postsListKey.value += 1;
+}
 </script>
 
 <template>
-  <div class="sign-out-button-container">
-    <button class="sign-out-button" @click="closeSession">
-      Close your session pushing this button
-    </button>
-  </div>
+  <div class="admin-shell">
+    <header class="admin-header">
+      <h1>Panou de administrare</h1>
+      <button class="sign-out-button" @click="closeSession">
+        Deconectare
+      </button>
+    </header>
 
-  <div class="posts-list">
-    <PostsList @change="getSelectedPost" />
-  </div>
+    <div class="admin-body">
+      <PostsList
+        :key="postsListKey"
+        :selectedId="selectedPostId"
+        @select="selectPost"
+        @create="startCreate"
+        @deleteRequest="pendingDeleteId = $event"
+      />
 
-  <div class="actions-container">
-    <h2>Choose an action you want</h2>
+      <main class="editor-pane">
+        <div v-if="!mode" class="empty-state">
+          <p>
+            Alege o postare din listă sau apasă „Postare nouă" pentru a
+            începe editarea.
+          </p>
+        </div>
 
-    <div class="radio-group">
-      <div v-if="selectedPost === 'default'">
-        <input
-          v-model="actionToPerform"
-          type="radio"
-          id="create"
-          name="action"
-          value="create"
+        <UpsertPost
+          v-else
+          :mode="mode"
+          :postId="mode === 'update' ? selectedPostId ?? undefined : undefined"
+          @saved="onSaved"
+          @cancel="cancelEdit"
         />
-        <label for="create">Create</label>
-      </div>
-
-      <div v-if="selectedPost !== 'default'">
-        <input
-          v-model="actionToPerform"
-          type="radio"
-          id="update"
-          name="action"
-          value="update"
-        />
-        <label for="update">Update</label>
-      </div>
-
-      <div v-if="selectedPost !== 'default'">
-        <input
-          v-model="actionToPerform"
-          type="radio"
-          id="delete"
-          name="action"
-          value="delete"
-        />
-        <label for="delete">Delete</label>
-      </div>
+      </main>
     </div>
+
+    <DeletePost
+      v-if="pendingDeleteId"
+      :postId="pendingDeleteId"
+      @deleted="onDeleted"
+      @cancel="pendingDeleteId = null"
+    />
   </div>
-
-  <h1>
-    {{ getActionToPerformMessage }}
-
-    <div v-if="getActionToPerformMessage === 'You want to create a new post'">
-      <UpsertPost mode="create" />
-    </div>
-  </h1>
 </template>
 
-<style lang="css" scoped>
-.sign-out-button {
-  background-color: red;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: large;
-}
-
-.sign-out-button-container {
-  display: flex;
-  justify-content: center;
-  padding: 1rem;
-}
-
-.actions-container {
+<style scoped>
+.admin-shell {
+  min-height: 100vh;
+  background-color: var(--midnight-navy-color);
+  padding: clamp(16px, 4vw, 32px);
   display: flex;
   flex-direction: column;
+  gap: 24px;
 }
 
-.radio-group {
+.admin-header {
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-h2,
-h1 {
+.admin-header h1 {
+  color: var(--white-color);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+}
+
+.sign-out-button {
+  background-color: #d64545;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease;
+}
+
+.sign-out-button:hover {
+  transform: translateY(-2px);
+}
+
+.admin-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: start;
+}
+
+.editor-pane {
+  width: 100%;
+}
+
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+  width: 100%;
+  padding: 24px;
+  background-color: var(--deep-ocean-blue-color);
+  border: 1px dashed rgba(245, 204, 59, 0.25);
+  border-radius: var(--radius);
+  color: var(--gray-color);
+  font-family: var(--font-ui);
   text-align: center;
 }
 
-.posts-list {
-  display: flex;
-  justify-content: center;
-  padding: 1rem;
+@media (min-width: 900px) {
+  .admin-body {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+  }
 }
 </style>
